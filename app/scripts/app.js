@@ -14,6 +14,10 @@ var app = angular.module('oopApp', [
         templateUrl: 'views/heroes.html',
         controller: 'HeroListCtrl'
       })
+      .when('/Weapons', {
+        templateUrl: 'views/weapons.html',
+        controller: 'WeaponCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -22,7 +26,7 @@ var app = angular.module('oopApp', [
 
 app.factory("HeroResource", function ($resource) {
     return $resource(
-        "http://0.0.0.0:4567/api/v1/heroes/:Id",
+        "http://0.0.0.0:4567/api/v1/heroes/:id",
         {Id: "@Id" },
         {
             "update": {method: "PUT"} 
@@ -32,8 +36,8 @@ app.factory("HeroResource", function ($resource) {
 
 app.factory("WeaponResource", function ($resource) {
     return $resource(
-        "http://0.0.0.0:4567/api/v1/weapons/:Id",
-        {Id: "@Id" },
+        "http://0.0.0.0:4567/api/v1/weapons/:id",
+        null,
         {
             "update": {method: "PUT"} 
         }
@@ -42,7 +46,7 @@ app.factory("WeaponResource", function ($resource) {
 
 app.factory("JobResource", function ($resource) {
     return $resource(
-        "http://0.0.0.0:4567/api/v1/jobs/:Id",
+        "http://0.0.0.0:4567/api/v1/jobs/:id",
         {Id: "@Id" },
         {
             "update": {method: "PUT"} 
@@ -52,7 +56,7 @@ app.factory("JobResource", function ($resource) {
 
 app.factory("RaceResource", function ($resource) {
     return $resource(
-        "http://0.0.0.0:4567/api/v1/races/:Id",
+        "http://0.0.0.0:4567/api/v1/races/:id",
         {Id: "@Id" },
         {
             "update": {method: "PUT"} 

@@ -1,9 +1,11 @@
 <div ng-controller="MainCtrl">
-	<table>
+	<table class="table table-striped">
 		<thead>
-			<td></td>
-			<td>ID</td>
-			<td>Name</td>
+			<tr>
+				<th></th>
+				<th>ID</th>
+				<th>Name</th>
+			</tr>
 		</thead>
 		<tbody>
 			<tr ng-repeat="hero in heroes">
@@ -17,7 +19,7 @@
 		<tfoot>
 			<tr>
 				<td>
-					<button class="btn-warn">Create</button>
+					<button class="btn-warn" ng-click="newHero()"> Create</button>
 				</td>
 				<td></td>
 				<td></td>
