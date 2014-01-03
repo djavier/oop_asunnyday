@@ -19,7 +19,7 @@
                     </td> 
                     <td></td> 
                     <td> 
-                        <input ng-model="weapon.Name" /></td> 
+                        <input ng-model="weapon.name" /></td> 
                 </tr> 
                 <tr ng-repeat="weapon in weapons | orderBy:'Id':true"> 
                     <td> 
@@ -39,7 +39,7 @@
                     <td>{{weapon.id}}</td> 
                     <td> 
                         <span ng-show="weapon.editMode == null || weapon.editMode == false">{{weapon.name}}</span> 
-                        <input ng-model="weapon.Name" ng-show="weapon.editMode == true" /> 
+                        <input ng-model="weapon.name" ng-show="weapon.editMode == true" /> 
                     </td> 
                 </tr> 
             </table> 
