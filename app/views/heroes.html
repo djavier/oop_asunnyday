@@ -1,0 +1,27 @@
+<div ng-controller="MainCtrl">
+	<table>
+		<thead>
+			<td></td>
+			<td>ID</td>
+			<td>Name</td>
+		</thead>
+		<tbody>
+			<tr ng-repeat="hero in heroes">
+				<td>
+					<a class="btn-info" href="hero/{{hero.id}}">Edit</a>
+				</td>
+				<td>{{hero.id}}</td>
+				<td>{{hero.name}}</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td>
+					<button class="btn-warn">Create</button>
+				</td>
+				<td></td>
+				<td></td>
+			</tr>
+		</tfoot>
+	</table>
+</div>
