@@ -1,5 +1,5 @@
 <ul style="list-style-type:none" >
-	<li ng-repeat="job in jobs">
+	<li ng-show="isHeroJob(job)" ng-repeat="job in jobs" ng-click="selectJob(job.id)">
 		{{job.id}}. {{job.name}}
 	</li>
 </ul>

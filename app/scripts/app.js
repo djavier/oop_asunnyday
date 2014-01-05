@@ -2,9 +2,10 @@
 
 var app = angular.module('oopApp', [
   'ngResource',
-  'ngRoute'
+  'ngRoute',
+  'ngAnimate'
 ])
-  .config(function ($routeProvider, $httpProvider, $locationProvider) {
+  .config(function ($routeProvider, $httpProvider, $locationProvider ) {
     
     //$locationProvider.html5Mode(true)
     $httpProvider.defaults.headers.post["Content-Type"] = "application/json";
@@ -25,11 +26,11 @@ var app = angular.module('oopApp', [
       })
       .when('/Races', {
         templateUrl: 'views/races.html',
-        controller: 'WeaponCtrl'
+        controller: 'RaceCtrl'
       })
        .when('/Jobs', {
         templateUrl: 'views/jobs.html',
-        controller: 'WeaponCtrl'
+        controller: 'JobCtrl'
       })
       .otherwise({
         redirectTo: '/'

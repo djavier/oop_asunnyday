@@ -1,5 +1,12 @@
-<ul style="list-style-type:none" >
-	<li ng-repeat="weapon in weapons">
+<ul style="list-style-type:none"  >
+	<li ng-animate="'animate'" ng-repeat="weapon in weaponTmp" ng-click="selectWeapon(weapon.id)">
 		{{weapon.id}}. {{weapon.name}}
+		
 	</li>
 </ul>
+<button ng-click="getNext(weapon.id)">Next </button>
+<button ng-click="getPrevious(weapon.id)">Prevoius </button>
+<!-- ng-show="isHeroWeapon(weapon)" | <weaponItem id="weapon.id"> </weaponItem> -->
+
+
+

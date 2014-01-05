@@ -1,7 +1,5 @@
 <ul style="list-style-type:none" >
-	<li ng-repeat='race in races'>
-		<button ng-click="selectItem(race.id)">
+	<li ng-show="isHeroRace(race)" ng-repeat="race in races" ng-click="selectRace(race.id)">
 			{{race.id}}. {{race.name}}
-		</button>
 	</li>
 </ul>
