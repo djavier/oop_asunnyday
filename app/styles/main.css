@@ -16,6 +16,21 @@ body {
 .header {
   border-bottom: 1px solid #e5e5e5;
 }
+
+.center {
+  margin-top:50%;
+  margin-left:50%;
+}
+.medium-box{
+  width:350px;
+  height:250px;
+  margin:auto auto;
+}
+.box {
+  height:175px;
+  margin:29px;
+}
+
 /* Make the masthead heading the same height as the navigation */
 .header h3 {
   margin-top: 0;

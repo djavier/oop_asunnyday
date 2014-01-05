@@ -1,29 +1,26 @@
-<div ng-controller="MainCtrl">
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<th></th>
-				<th>ID</th>
-				<th>Name</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="hero in heroes">
-				<td>
-					<a class="btn-info" href="hero/{{hero.id}}">Edit</a>
-				</td>
-				<td>{{hero.id}}</td>
-				<td>{{hero.name}}</td>
-			</tr>
-		</tbody>
-		<tfoot>
-			<tr>
-				<td>
-					<button class="btn-warn" ng-click="newHero()"> Create</button>
-				</td>
-				<td></td>
-				<td></td>
-			</tr>
-		</tfoot>
-	</table>
+<div ng-controller="HeroCtrl">
+	<div class="row" >
+		<div  class="col-xs-12 col-md-12">
+			<div class="well center medium-box">
+				<ul style="list-style-type:none">
+					<li ng-repeat="hero in heroes">
+						<div class="well">
+							<span>{{hero.name}}</span>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div  class="col-xs-6 col-md-12">
+			<div  class="well col-xs-2 col-md-3 box" ng-controller="WeaponCtrl">
+				<weapons></Weapons>
+			</div>
+			<div  class="well col-xs-2 col-md-3 box" ng-controller="RaceCtrl">
+				<races></Races>
+			</div>
+			<div  class="well col-xs-2 col-md-3 box" ng-controller="JobCtrl">
+				<jobs></Jobs>
+			</div>
+		</div>
+	</div>
 </div>

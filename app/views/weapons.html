@@ -1,13 +1,14 @@
 <div ng-controller="WeaponCtrl">
-	 <div style="width: 500px;"> 
+	 <div style="width: 700px;"> 
             <table class="table table-striped table-bordered table-condensed table-hover"> 
-                <tr> 
+                <thead>
                     <th style="width: 200px;"> 
                         <div class="btn-toolbar"><a class="btn btn-default icon-plus" ng-click="toggleAddMode()">+</a></div> 
                     </th> 
                     <th style="width: 50px;">Id</th> 
-                    <th>Name</th> 
-                </tr> 
+                    <th style="width: 200px;">Name</th> 
+                    <th style="width: 300px;">Description</th>
+                </thead> 
                 <tr ng-show="addMode"> 
                     <td> 
                         <div class="btn-toolbar"> 
@@ -19,7 +20,11 @@
                     </td> 
                     <td></td> 
                     <td> 
-                        <input ng-model="weapon.name" /></td> 
+                        <input ng-model="weapon.name" />
+                    </td> 
+                    <td>
+                    	<input ng-model="weapon.desc" />
+                    </td>
                 </tr> 
                 <tr ng-repeat="weapon in weapons | orderBy:'Id':true"> 
                     <td> 
@@ -40,6 +45,10 @@
                     <td> 
                         <span ng-show="weapon.editMode == null || weapon.editMode == false">{{weapon.name}}</span> 
                         <input ng-model="weapon.name" ng-show="weapon.editMode == true" /> 
+                    </td> 
+                    <td> 
+                        <span ng-show="weapon.editMode == null || weapon.editMode == false">{{weapon.desc}}</span> 
+                        <input ng-model="weapon.desc" ng-show="weapon.editMode == true" /> 
                     </td> 
                 </tr> 
             </table> 

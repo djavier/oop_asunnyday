@@ -4,13 +4,11 @@ var app = angular.module('oopApp', [
   'ngResource',
   'ngRoute'
 ])
-  .config(function ($routeProvider, $httpProvider) {
+  .config(function ($routeProvider, $httpProvider, $locationProvider) {
     
-    //$httpProvider.defaults.headers.common["Access-Control-Allow-Origin"] = '*'
-    //$httpProvider.defaults.headers.common["Access-Control-Allow-Headers"] = 'origin, x-requested-with, content-type, accept'
-    //$httpProvider.defaults.headers.common["Access-Control-Allow-Method"] = 'GET, POST, PUT, DELETE, OPTIONS'
-    //$httpProvider.defaults.headers.get = "GET";
-
+    //$locationProvider.html5Mode(true)
+    $httpProvider.defaults.headers.post["Content-Type"] = "application/json";
+    $httpProvider.defaults.headers.put["Content-Type"] = "application/json";
 
     $routeProvider
       .when('/', {
@@ -19,10 +17,18 @@ var app = angular.module('oopApp', [
       })
       .when('/Heroes', {
         templateUrl: 'views/heroes.html',
-        controller: 'HeroListCtrl'
+        controller: 'HeroCtrl'
       })
       .when('/Weapons', {
         templateUrl: 'views/weapons.html',
+        controller: 'WeaponCtrl'
+      })
+      .when('/Races', {
+        templateUrl: 'views/races.html',
+        controller: 'WeaponCtrl'
+      })
+       .when('/Jobs', {
+        templateUrl: 'views/jobs.html',
         controller: 'WeaponCtrl'
       })
       .otherwise({
