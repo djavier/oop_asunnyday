@@ -1,5 +1,8 @@
 <ul style="list-style-type:none" >
-	<li ng-show="isHeroJob(job)" ng-repeat="job in jobs" ng-click="selectJob(job.id)">
+	<li ng-animate="'animate'" ng-repeat="job in jobTmp" ng-click="selectJob(job.id)">
 		{{job.id}}. {{job.name}}
 	</li>
 </ul>
+
+<button ng-click="getPreviousJob(weapon.id)">Previous </button>
+<button ng-click="getNextJob(weapon.id)">Next </button>

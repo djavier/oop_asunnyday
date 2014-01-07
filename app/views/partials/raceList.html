@@ -1,5 +1,9 @@
 <ul style="list-style-type:none" >
-	<li ng-show="isHeroRace(race)" ng-repeat="race in races" ng-click="selectRace(race.id)">
+	<li ng-animate="'animate'" ng-repeat="race in raceTmp" ng-click="selectRace(race.id)">
 			{{race.id}}. {{race.name}}
 	</li>
 </ul>
+
+
+<button ng-click="getPreviousRace(weapon.id)">Previous </button>
+<button ng-click="getNextRace(weapon.id)">Next </button>

@@ -22,11 +22,11 @@ angular.module('oopApp')
 	// 		template: '<div>{{weapon.id}}. {{weapon.name}}</div>',
 	// 		link: function(scope, element, attrs){
 	// 			scope.$watch("scope.hero.weapon_id", function(value) {
- //            	if (attrs.id === value) {
- //            		console.log(value);
- //                	element.toggleClass("alert-box alert");
- //            	}
- //        	})
+	 //            	if (attrs.id === value) {
+	 //            		console.log(value);
+	 //                	element.toggleClass("alert-box alert");
+	 //            	}
+	 //        	})
 	// 		}
 	// 	};
 	// })
@@ -45,7 +45,10 @@ angular.module('oopApp')
 
 angular.module('oopApp')
   .controller('HeroCtrl', function ($scope, $routeParams, $location, HeroResource, WeaponResource, JobResource, RaceResource) {
+	
 	$scope.weaponTmp=[];
+	$scope.jobTmp=[];
+	$scope.raceTmp=[];
 
     $scope.selectRace = function(id) {
     	$scope.hero.race_id = id;
@@ -68,7 +71,7 @@ angular.module('oopApp')
     	return $scope.hero.race_id === race.id;
     }
 
-    $scope.getNext = function(id) {
+    $scope.getNextWeapon = function(id) {
     	var currentWeapon = $scope.weapons.filter(function(element) { return element.id === id })[0]
     	var nextItemIndex = $scope.weapons.indexOf(currentWeapon) + 1
 
@@ -79,9 +82,9 @@ angular.module('oopApp')
     		$scope.weapon = $scope.weapons[nextItemIndex];
     	}
     	
-    }
+    };
 
-        $scope.getPrevious = function(id) {
+    $scope.getPreviousWeapon = function(id) {
     	var currentWeapon = $scope.weapons.filter(function(element) { return element.id === id })[0]
     	var previousItemIndex = $scope.weapons.indexOf(currentWeapon) - 1
 
@@ -92,20 +95,84 @@ angular.module('oopApp')
     		$scope.weapon = $scope.weapons[previousItemIndex];
     	}
     	
-    }
+    };
+
+    $scope.getNextJob = function(id) {
+    	var currentJob = $scope.weapons.filter(function(element) { return element.id === id })[0]
+    	var nextItemIndex = $scope.jobs.indexOf(currentJob) + 1
+
+    	if (nextItemIndex <= $scope.jobs.length-1 )
+    	{
+    		$scope.jobTmp.unshift($scope.jobs[nextItemIndex])
+    		$scope.jobTmp.pop();
+    		$scope.job = $scope.jobs[nextItemIndex];
+    	}
+    	
+    };
+
+    $scope.getPreviousJob = function(id) {
+    	var currentJob = $scope.jobs.filter(function(element) { return element.id === id })[0]
+    	var previousItemIndex = $scope.jobs.indexOf(currentJob) - 1
+
+    	if (previousItemIndex >= 0 )
+    	{
+    		$scope.jobTmp.unshift($scope.jobs[previousItemIndex])
+    		$scope.jobTmp.pop();
+    		$scope.job = $scope.jobs[previousItemIndex];
+    	}
+    };
+
+    $scope.getNextRace = function(id) {
+    	var currentRace = $scope.races.filter(function(element) { return element.id === id })[0]
+    	var nextItemIndex = $scope.races.indexOf(currentRace) + 1
+
+    	if (nextItemIndex <= $scope.races.length-1 )
+    	{
+    		$scope.raceTmp.unshift($scope.races[nextItemIndex])
+    		$scope.raceTmp.pop();
+    		$scope.race = $scope.races[nextItemIndex];
+    	}
+    	
+    };
+
+    $scope.getPreviousRace = function(id) {
+    	var currentRace = $scope.races.filter(function(element) { return element.id === id })[0]
+    	var nextItemIndex = $scope.races.indexOf(currentRace) - 1
+
+    	if (previousItemIndex >= 0 )
+    	{
+    		$scope.raceTmp.unshift($scope.races[previousItemIndex])
+    		$scope.raceTmp.pop();
+    		$scope.race = $scope.races[previousItemIndex];
+    	}
+    	
+    };
 
     $scope.heroes = HeroResource.query(function() {
 
-		$scope.hero = HeroResource.get({id: 1}, function() {
+		//$scope.hero = HeroResource.get({id: 1}, function() {
+			$scope.hero = $scope.heroes[0]
 			$scope.weapons = WeaponResource.query(function(data) { 
 				var wpn = data.filter(function(element) { return element.id === $scope.hero.weapon_id })[0]
 				$scope.weaponTmp.unshift(wpn);
 				$scope.weapon = wpn;
+
+			});			
+				
+			$scope.jobs = JobResource.query(function(data) { 
+				var job = data.filter(function(element) { return element.id === $scope.hero.job_id })[0]
+				$scope.jobTmp.unshift(job);
+				$scope.job = job;
+
 			});
-			$scope.jobs = JobResource.query();
-			$scope.races =  RaceResource.query();
+			$scope.races =  RaceResource.query(function(data) { 
+				var race = data.filter(function(element) { return element.id === $scope.hero.race_id })[0]
+				$scope.raceTmp.unshift(race);
+				$scope.race = race;
+
+			});			
 			
-		})
+		//})
 	});
 
   })
@@ -207,11 +274,7 @@ angular.module('oopApp')
 
 angular.module('oopApp')
   .controller('JobCtrl', function ($scope, $routeParams, $location, JobResource) {
-	//$scope.heroes = HeroResource.query();
-
-	        
-
-        //$scope.getJobs();
+       
 
         $scope.toggleAddMode = function () { 
             $scope.addMode = !$scope.addMode; 
