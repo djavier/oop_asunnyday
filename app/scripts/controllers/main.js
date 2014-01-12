@@ -80,6 +80,8 @@ angular.module('oopApp')
     		$scope.weaponTmp.unshift($scope.weapons[nextItemIndex])
     		$scope.weaponTmp.pop();
     		$scope.weapon = $scope.weapons[nextItemIndex];
+            if (nextItemIndex == $scope.weapons.length-1)
+                $scope.weapon.last = true;
     	}
     	
     };
@@ -93,6 +95,8 @@ angular.module('oopApp')
     		$scope.weaponTmp.unshift($scope.weapons[previousItemIndex])
     		$scope.weaponTmp.pop();
     		$scope.weapon = $scope.weapons[previousItemIndex];
+            if (previousItemIndex == 0)
+                $scope.weapon.first = true;
     	}
     	
     };
@@ -106,6 +110,8 @@ angular.module('oopApp')
     		$scope.jobTmp.unshift($scope.jobs[nextItemIndex])
     		$scope.jobTmp.pop();
     		$scope.job = $scope.jobs[nextItemIndex];
+             if (nextItemIndex == $scope.jobs.length-1)
+                $scope.job.last = true;
     	}
     	
     };
@@ -119,6 +125,8 @@ angular.module('oopApp')
     		$scope.jobTmp.unshift($scope.jobs[previousItemIndex])
     		$scope.jobTmp.pop();
     		$scope.job = $scope.jobs[previousItemIndex];
+            if (previousItemIndex == 0)
+                $scope.job.first = true;
     	}
     };
 
@@ -131,6 +139,8 @@ angular.module('oopApp')
     		$scope.raceTmp.unshift($scope.races[nextItemIndex])
     		$scope.raceTmp.pop();
     		$scope.race = $scope.races[nextItemIndex];
+            if (nextItemIndex == $scope.races.length-1)
+                $scope.race.last = true;
     	}
     	
     };
@@ -144,6 +154,8 @@ angular.module('oopApp')
     		$scope.raceTmp.unshift($scope.races[previousItemIndex])
     		$scope.raceTmp.pop();
     		$scope.race = $scope.races[previousItemIndex];
+            if (previousItemIndex == 0)
+                $scope.race.first = true;
     	}
     	
     };
@@ -156,6 +168,7 @@ angular.module('oopApp')
 				var wpn = data.filter(function(element) { return element.id === $scope.hero.weapon_id })[0]
 				$scope.weaponTmp.unshift(wpn);
 				$scope.weapon = wpn;
+                $scope.weapon.first = true;
 
 			});			
 				
@@ -163,12 +176,14 @@ angular.module('oopApp')
 				var job = data.filter(function(element) { return element.id === $scope.hero.job_id })[0]
 				$scope.jobTmp.unshift(job);
 				$scope.job = job;
+                $scope.job.first = true;
 
 			});
 			$scope.races =  RaceResource.query(function(data) { 
 				var race = data.filter(function(element) { return element.id === $scope.hero.race_id })[0]
 				$scope.raceTmp.unshift(race);
 				$scope.race = race;
+                $scope.race.first = true;
 
 			});			
 			

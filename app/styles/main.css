@@ -26,9 +26,22 @@ body {
   height:250px;
   margin:auto auto;
 }
+
+.small-box {
+  height:100px;
+  width:100px;
+  margin:auto auto;
+}
+
 .box {
-  height:200px;
+  height:300px;
   margin:20px;
+  padding:10px !important;
+}
+
+.box-selected{
+  background-color:#428bca;
+  cursor:default !important;
 }
 
 /* Make the masthead heading the same height as the navigation */

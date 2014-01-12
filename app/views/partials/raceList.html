@@ -1,9 +1,15 @@
-<ul style="list-style-type:none" >
-	<li ng-animate="'animate'" ng-repeat="race in raceTmp" ng-click="selectRace(race.id)">
-			{{race.id}}. {{race.name}}
-	</li>
-</ul>
+<div style="min-height:75%;" ng-animate="'animate'" ng-repeat="race in raceTmp" ng-click="selectRace(race.id)">
+	<div style="cursor:pointer; border-radius:5px; padding:10px;" ng-class="{'box-selected': race.id==hero.race_id}">
+		<div class="small-box">
+			<img style="width:100px;height:100px" ng-if="race.image != null" src="race.image">	
+			<img style="width:100px;height:100px" ng-if="race.image == null" src="images/not_available_image.jpg"></div>
+		<div style="text-align:center;">
+			<h4>{{race.name}}</h4>
+		</div>
+	</div>
+</div>
 
-
-<button ng-click="getPreviousRace(race.id)">Previous </button>
-<button ng-click="getNextRace(race.id)">Next </button>
+<div style="margin-top:20px;">
+	<button class="btn btn-info"  ng-show="!race.first" ng-click="getPreviousRace(race.id)">Prev.</button>
+	<button class="btn btn-success" ng-show="!race.last" ng-click="getNextRace(race.id)">Next</button>
+</div>

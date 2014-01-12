@@ -1,14 +1,18 @@
-<!-- <ul style="list-style-type:none">-->
-<div ng-animate="'animate'" ng-repeat="weapon in weaponTmp" ng-click="selectWeapon(weapon.id)">
-	<div style="text-align:center;">
-		<h4>{{weapon.name}}</h4>
-		<span>{{weapon.desc}}</span>
+<div style="min-height:75%;" ng-animate="'animate'" ng-repeat="weapon in weaponTmp" ng-click="selectWeapon(weapon.id)">
+	<div style="cursor:pointer; border-radius:5px; padding:10px;" ng-class="{'box-selected': weapon.id==hero.weapon_id}">
+		<div class="small-box">
+			<img style="width:100px;height:100px" ng-if="weapon.image != null" src="weapon.image">	
+			<img style="width:100px;height:100px" ng-if="weapon.image == null" src="images/not_available_image.jpg"></div>
+		<div style="text-align:center;">
+			<h4>{{weapon.name}}</h4>
+			<span>{{weapon.desc}}</span>
+		</div>
 	</div>
 </div>
-<!-- </ul>-->
-<div style="margin-top:25px;">
-<button ng-click="getPreviousWeapon(weapon.id)">Previous</button>
-<button ng-click="getNextWeapon(weapon.id)">Next</button>
+<div style="margin-top:20px;">
+	<button class="btn btn-info" ng-show="!weapon.first" ng-click="getPreviousWeapon(weapon.id)">Prev.</button>
+	<button class="btn btn-success" ng-show="!weapon.last" ng-click="getNextWeapon(weapon.id)">Next</button>
 </div>
+
 <!-- ng-show="isHeroWeapon(weapon)" | <weaponItem id="weapon.id"></weaponItem>
 -->
