@@ -1,27 +1,30 @@
 <div ng-controller="HeroCtrl">
 	<div class="row" >
 		<div  class="col-xs-12 col-md-12">
-			<div class="well center medium-box">
-				<ul style="list-style-type:none">
-					<li ng-repeat="hero in heroes">
-						<div class="well">
-							<span>{{hero.name}}</span>
-						</div>
-					</li>
-				</ul>
-				<button ng-click="getPreviousHero(hero.id)">Previous </button>
-				<button ng-click="getNextHero(hero.id)">Next </button>
+			<div class="well medium-box">
+				<div ng-repeat="hero in heroesTmp">
+					<center>
+						<img style="width:100px;height:100px" ng-src="{{getImage(hero)}}"/>
+						<h3>{{hero.name}}</h3>
+					</center>
+				</div>
+				<center>
+					<div style="margin-top:20px;">
+						<button class="btn btn-info" ng-show="!hero.first" ng-click="getPreviousHero(hero.id)">Prev.</button>
+						<button class="btn btn-success" ng-show="!hero.last" ng-click="getNextHero(hero.id)">Next</button>
+					</div>
+				</center>
 			</div>
 		</div>
 		<div  class="col-xs-6 col-md-12">
 			<div  class="well col-xs-3 col-md-3 box">
-				<weapons></Weapons>
+				<weapons></weapons>
 			</div>
 			<div  class="well col-xs-3 col-md-3 box">
-				<races></Races>
+				<races></races>
 			</div>
 			<div  class="well col-xs-3 col-md-3 box">
-				<jobs></Jobs>
+				<jobs></jobs>
 			</div>
 		</div>
 	</div>

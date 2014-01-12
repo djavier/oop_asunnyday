@@ -1,8 +1,8 @@
 <div style="min-height:75%;" ng-animate="'animate'" ng-repeat="job in jobTmp" ng-click="selectJob(job.id)">
 	<div style=" cursor:pointer; border-radius:5px; padding:10px;" ng-class="{'box-selected': job.id==hero.job_id}">
 		<div class="small-box">
-			<img style="width:100px;height:100px" ng-if="job.image != null" src="job.image">	
-			<img style="width:100px;height:100px" ng-if="job.image == null" src="images/not_available_image.jpg"></div>
+			<img style="width:100px;height:100px" ng-src="{{getImage(job)}}"/>
+		</div>
 		<div style="text-align:center;">
 			<h4>{{job.name}}</h4>
 		</div>

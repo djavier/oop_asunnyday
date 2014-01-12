@@ -16,20 +16,6 @@ angular.module('oopApp')
 			templateUrl: "/views/partials/weaponList.html"
 		};
 	})
-	// .directive("weaponItem", function() {
-	// 	return {
-	// 		restrict: "E",
-	// 		template: '<div>{{weapon.id}}. {{weapon.name}}</div>',
-	// 		link: function(scope, element, attrs){
-	// 			scope.$watch("scope.hero.weapon_id", function(value) {
-	 //            	if (attrs.id === value) {
-	 //            		console.log(value);
-	 //                	element.toggleClass("alert-box alert");
-	 //            	}
-	 //        	})
-	// 		}
-	// 	};
-	// })
 	.directive("jobs", function() {
 		return {
 			restrict: "E",
@@ -69,6 +55,42 @@ angular.module('oopApp')
     }
     $scope.isHeroRace =  function (race) {
     	return $scope.hero.race_id === race.id;
+    }
+
+    $scope.getImage = function(object){
+        if (object.image == null)
+            
+            return "images/not_available_image.jpg"
+        else
+            return object.image
+    }
+
+    $scope.getNextHero = function (id){ 
+        var currentHero = $scope.heroes.filter(function(element) { return element.id === id })[0]
+        var nextItemIndex = $scope.heroes.indexOf(currentHero) + 1
+
+        if (nextItemIndex <= $scope.heroes.length-1 )
+        {
+            $scope.heroesTmp.unshift($scope.heroes[nextItemIndex])
+            $scope.heroesTmp.pop();
+            $scope.hero = $scope.heroes[nextItemIndex];
+            if (nextItemIndex == $scope.heroes.length-1)
+                $scope.hero.last = true;
+        }
+    }
+
+    $scope.getPreviousHero = function (id){
+        var currentHero = $scope.heroes.filter(function(element) { return element.id === id })[0]
+        var previousItemIndex = $scope.heroes.indexOf(currentHero) - 1
+
+        if (previousItemIndex >= 0)
+        {
+            $scope.heroesTmp.unshift($scope.heroes[previousItemIndex])
+            $scope.heroesTmp.pop();
+            $scope.hero = $scope.heroes[previousItemIndex];
+            if (previousItemIndex == 0)
+                $scope.hero.first = true;
+        }
     }
 
     $scope.getNextWeapon = function(id) {
@@ -161,33 +183,33 @@ angular.module('oopApp')
     };
 
     $scope.heroes = HeroResource.query(function() {
+		
+		$scope.heroesTmp = $scope.heroes;
+        $scope.hero = $scope.heroes[0]
+        $scope.hero.first=true;
 
-		//$scope.hero = HeroResource.get({id: 1}, function() {
-			$scope.hero = $scope.heroes[0]
-			$scope.weapons = WeaponResource.query(function(data) { 
-				var wpn = data.filter(function(element) { return element.id === $scope.hero.weapon_id })[0]
-				$scope.weaponTmp.unshift(wpn);
-				$scope.weapon = wpn;
-                $scope.weapon.first = true;
-
-			});			
-				
-			$scope.jobs = JobResource.query(function(data) { 
-				var job = data.filter(function(element) { return element.id === $scope.hero.job_id })[0]
-				$scope.jobTmp.unshift(job);
-				$scope.job = job;
-                $scope.job.first = true;
-
-			});
-			$scope.races =  RaceResource.query(function(data) { 
-				var race = data.filter(function(element) { return element.id === $scope.hero.race_id })[0]
-				$scope.raceTmp.unshift(race);
-				$scope.race = race;
-                $scope.race.first = true;
-
-			});			
+		$scope.weapons = WeaponResource.query(function(data) { 
+			var wpn = data.filter(function(element) { return element.id === $scope.hero.weapon_id })[0]
+			$scope.weaponTmp.unshift(wpn);
+			$scope.weapon = wpn;
+            $scope.weapon.first = true;               
+		});			
 			
-		//})
+		$scope.jobs = JobResource.query(function(data) { 
+			var job = data.filter(function(element) { return element.id === $scope.hero.job_id })[0]
+			$scope.jobTmp.unshift(job);
+			$scope.job = job;
+            $scope.job.first = true;
+
+		});
+		$scope.races =  RaceResource.query(function(data) { 
+			var race = data.filter(function(element) { return element.id === $scope.hero.race_id })[0]
+			$scope.raceTmp.unshift(race);
+			$scope.race = race;
+            $scope.race.first = true;
+
+		});			
+					
 	});
 
   })
