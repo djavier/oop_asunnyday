@@ -2,33 +2,51 @@
 	<div class="row" >
 		<div  class="col-xs-12 col-md-12">
 			<div class="well medium-box">
-				<div ng-repeat="hero in heroesTmp">
-					<center>
-						<img style="width:100px;height:100px" ng-src="{{getImage(hero)}}"/>
-						<h3>{{hero.name}}</h3>
-					</center>
-				</div>
-				<center>
-					<div style="margin-top:20px;">
-						<button class="btn btn-info" ng-show="!hero.first" ng-click="getPreviousHero(hero.id)">Prev.</button>
-						<button class="btn btn-success" ng-show="!hero.last" ng-click="getNextHero(hero.id)">Next</button>
+				<div role ="form">
+					<div>
+						<div class="btn-toolbar">
+							<a class="btn btn-default icon-plus" ng-show="!addMode" ng-click="toggleAddMode()">+</a>
+							<div  class="btn-group" ng-show="addMode">
+								<!-- <a class="btn btn-primary icon-save" ng-click="addHero()">Add</a> -->
+								<a class="btn btn-warning icon-remove" ng-click="toggleAddMode()">Cancel</a>
+							</div>
+						</div>
+						<div role="form" ng-show="addMode">						
+							<div  class="form-group">
+								<label for="heroName">Hero Name</label>
+								<input class="form-control" id="heroName"  ng-model="hero.name" placeholder="Enter Hero name">
+							</div>
+						</div>
 					</div>
-				</center>
+					<div ng-show="!addMode">
+						<div  ng-repeat="hero in heroesTmp">
+							<center>
+								<img style="width:100px;height:100px" ng-src="{{getImage(hero)}}"/>
+								<h3>{{hero.name}}</h3>
+							</center>
+						</div>
+						<center>
+							<div style="margin-top:20px;">
+								<button class="btn btn-info" ng-show="!hero.first" ng-click="getPreviousHero(hero.id)">Prev.</button>
+								<button class="btn btn-success" ng-show="!hero.last" ng-click="getNextHero(hero.id)">Next</button>
+							</div>
+						</center>
+					</div>
+				</div>
 			</div>
+			<div  class="col-xs-6 col-md-12">
+				<div  class="well col-xs-3 col-md-3 box">
+					<weapons></weapons>
+				</div>
+				<div  class="well col-xs-3 col-md-3 box">
+					<races></races>
+				</div>
+				<div  class="well col-xs-3 col-md-3 box">
+					<jobs></jobs>
+				</div>
+			</div>
+			<center>
+				<button class="btn btn-success" ng-click="saveHero()">Save</button>
+			</center>
 		</div>
-		<div  class="col-xs-6 col-md-12">
-			<div  class="well col-xs-3 col-md-3 box">
-				<weapons></weapons>
-			</div>
-			<div  class="well col-xs-3 col-md-3 box">
-				<races></races>
-			</div>
-			<div  class="well col-xs-3 col-md-3 box">
-				<jobs></jobs>
-			</div>
-		</div>
-		<center>
-		<button class="btn btn-success" ng-click="saveHero()">Save</button>
-		</center>
 	</div>
-</div>

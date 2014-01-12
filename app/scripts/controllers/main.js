@@ -35,6 +35,8 @@ angular.module('oopApp')
 	$scope.weaponTmp=[];
 	$scope.jobTmp=[];
 	$scope.raceTmp=[];
+    $scope.addMode = false;
+
 
     $scope.selectRace = function(id) {
     	$scope.hero.race_id = id;
@@ -64,6 +66,10 @@ angular.module('oopApp')
         else
             return object.image
     }
+
+    $scope.toggleAddMode = function () { 
+            $scope.addMode = !$scope.addMode; 
+    }; 
 
     $scope.getNextHero = function (id){ 
         var currentHero = $scope.heroes.filter(function(element) { return element.id === id })[0]
@@ -233,6 +239,7 @@ angular.module('oopApp')
 		});			
 					
 	});
+    
 
   })
     .controller('WeaponCtrl', function ($scope, $routeParams, $location, WeaponResource) {

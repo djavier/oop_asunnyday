@@ -9,10 +9,12 @@
 		</div>
 	</div>
 </div>
-<div style="margin-top:20px;">
-	<button class="btn btn-info" ng-show="!weapon.first" ng-click="getPreviousWeapon(weapon.id)">Prev.</button>
-	<button class="btn btn-success" ng-show="!weapon.last" ng-click="getNextWeapon(weapon.id)">Next</button>
-</div>
+<center>
+	<div style="margin-top:20px;">
+		<button class="btn btn-info" ng-show="!weapon.first" ng-click="getPreviousWeapon(weapon.id)">Prev.</button>
+		<button class="btn btn-success" ng-show="!weapon.last" ng-click="getNextWeapon(weapon.id)">Next</button>
+	</div>
+</center>
 
 <!-- ng-show="isHeroWeapon(weapon)" | <weaponItem id="weapon.id"></weaponItem>
 -->
