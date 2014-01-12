@@ -182,6 +182,25 @@ angular.module('oopApp')
     	
     };
 
+
+    $scope.getHeroes = function(){
+        $scope.heroes = HeroResource.query();
+    }
+
+    $scope.saveHero = function(){
+        if ($scope.hero.id == null)
+        {
+            HeroResource.save($scope.hero, $scope.getHeroes())   
+        } else
+        {
+            HeroResource.update({id: $scope.hero.id}, $scope.hero, $scope.getHeroes())
+            //$scope.hero = hero;
+        }
+        $scope.heroesTmp = $scope.heroes;
+
+    }
+
+
     $scope.heroes = HeroResource.query(function() {
 		
 		$scope.heroesTmp = $scope.heroes;
@@ -192,21 +211,24 @@ angular.module('oopApp')
 			var wpn = data.filter(function(element) { return element.id === $scope.hero.weapon_id })[0]
 			$scope.weaponTmp.unshift(wpn);
 			$scope.weapon = wpn;
-            $scope.weapon.first = true;               
+            if ($scope.weapons.indexOf(wpn) == 0)
+                $scope.weapon.first = true;               
 		});			
 			
 		$scope.jobs = JobResource.query(function(data) { 
 			var job = data.filter(function(element) { return element.id === $scope.hero.job_id })[0]
 			$scope.jobTmp.unshift(job);
 			$scope.job = job;
-            $scope.job.first = true;
+            if ($scope.jobs.indexOf(job) == 0)
+                $scope.job.first = true;
 
 		});
 		$scope.races =  RaceResource.query(function(data) { 
 			var race = data.filter(function(element) { return element.id === $scope.hero.race_id })[0]
 			$scope.raceTmp.unshift(race);
 			$scope.race = race;
-            $scope.race.first = true;
+            if ($scope.races.indexOf(race) == 0)
+                $scope.race.first = true;
 
 		});			
 					
