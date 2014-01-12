@@ -21,9 +21,10 @@ body {
   margin-top:50%;
   margin-left:50%;
 }
+
 .medium-box{
   width:350px;
-  height:250px;
+  height:auto;
   margin:auto auto;
 }
 

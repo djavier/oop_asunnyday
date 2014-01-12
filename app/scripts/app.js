@@ -51,7 +51,7 @@ app.factory("HeroResource", function ($resource) {
 app.factory("WeaponResource", function ($resource) {
     return $resource(
         "http://0.0.0.0:4567/api/v1/weapons/:id",
-        null,
+        {Id: "@Id" },
         {
             "update": {method: "PUT"} 
         }
