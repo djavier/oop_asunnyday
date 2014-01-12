@@ -37,6 +37,38 @@ var app = angular.module('oopApp', [
       });
   });
 
+app.factory("MessageFactory", function(){
+
+    toastr.options = {
+      "closeButton": false,
+      "debug": false,
+      "positionClass": "toast-bottom-full-width",
+      "onclick": null,
+      "showDuration": "300",
+      "hideDuration": "500",
+      "timeOut": "3000",
+      "extendedTimeOut": "500",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    }
+
+    return {
+          success: function(message)
+          {
+            toastr.success(message);
+          },
+          error: function(message)
+          {
+            toastr.error(message);
+          },
+          warning: function(message)
+          {
+            toastr.warning(message);
+          }
+    }
+});
 
 app.factory("HeroResource", function ($resource) {
     return $resource(

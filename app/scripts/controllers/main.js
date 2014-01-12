@@ -10,32 +10,32 @@ angular.module('oopApp')
   });
 
 angular.module('oopApp')
-	.directive("weapons", function() {
-		return {
-			restrict: "E",
-			templateUrl: "/views/partials/weaponList.html"
-		};
-	})
-	.directive("jobs", function() {
-		return {
-			restrict: "E",
-			templateUrl: "/views/partials/jobList.html"
-		};
-	})
-	.directive("races", function() {
-		return {
-			restrict: "E",
-			templateUrl: "/views/partials/raceList.html"
-		};
-	});
+    .directive("weapons", function() {
+        return {
+            restrict: "E",
+            templateUrl: "/views/partials/weaponList.html"
+        };
+    })
+    .directive("jobs", function() {
+        return {
+            restrict: "E",
+            templateUrl: "/views/partials/jobList.html"
+        };
+    })
+    .directive("races", function() {
+        return {
+            restrict: "E",
+            templateUrl: "/views/partials/raceList.html"
+        };
+    });
 
 angular.module('oopApp')
-  .controller('HeroCtrl', function ($scope, $routeParams, $location, HeroResource, WeaponResource, JobResource, RaceResource) {
-	
+  .controller('HeroCtrl', function ($scope, $routeParams, $location, HeroResource, WeaponResource, JobResource, RaceResource, MessageFactory) {
+    
     $scope.heroesTmp=[];
-	$scope.weaponTmp=[];
-	$scope.jobTmp=[];
-	$scope.raceTmp=[];
+    $scope.weaponTmp=[];
+    $scope.jobTmp=[];
+    $scope.raceTmp=[];
     $scope.addMode = false;
 
     $scope.heroes = HeroResource.query(function() {
@@ -73,13 +73,13 @@ angular.module('oopApp')
 
 
     $scope.selectRace = function(id) {
-    	$scope.hero.race_id = id;
+        $scope.hero.race_id = id;
     }
     $scope.selectJob = function(id) {
-    	$scope.hero.job_id = id;
+        $scope.hero.job_id = id;
     }
     $scope.selectWeapon = function(id) {
-    	$scope.hero.weapon_id = id;
+        $scope.hero.weapon_id = id;
     }
 
 
@@ -134,92 +134,92 @@ angular.module('oopApp')
     }
 
     $scope.getNextWeapon = function(id) {
-    	var currentWeapon = $scope.weapons.filter(function(element) { return element.id === id })[0]
-    	var nextItemIndex = $scope.weapons.indexOf(currentWeapon) + 1
+        var currentWeapon = $scope.weapons.filter(function(element) { return element.id === id })[0]
+        var nextItemIndex = $scope.weapons.indexOf(currentWeapon) + 1
 
-    	if (nextItemIndex <= $scope.weapons.length-1 )
-    	{
-    		$scope.weaponTmp.unshift($scope.weapons[nextItemIndex])
-    		$scope.weaponTmp.pop();
-    		$scope.weapon = $scope.weapons[nextItemIndex];
+        if (nextItemIndex <= $scope.weapons.length-1 )
+        {
+            $scope.weaponTmp.unshift($scope.weapons[nextItemIndex])
+            $scope.weaponTmp.pop();
+            $scope.weapon = $scope.weapons[nextItemIndex];
             if (nextItemIndex == $scope.weapons.length-1)
                 $scope.weapon.last = true;
-    	}
-    	
+        }
+        
     };
 
     $scope.getPreviousWeapon = function(id) {
-    	var currentWeapon = $scope.weapons.filter(function(element) { return element.id === id })[0]
-    	var previousItemIndex = $scope.weapons.indexOf(currentWeapon)-1
+        var currentWeapon = $scope.weapons.filter(function(element) { return element.id === id })[0]
+        var previousItemIndex = $scope.weapons.indexOf(currentWeapon)-1
 
-    	if (previousItemIndex >= 0 )
-    	{
-    		$scope.weaponTmp.unshift($scope.weapons[previousItemIndex])
-    		$scope.weaponTmp.pop();
-    		$scope.weapon = $scope.weapons[previousItemIndex];
+        if (previousItemIndex >= 0 )
+        {
+            $scope.weaponTmp.unshift($scope.weapons[previousItemIndex])
+            $scope.weaponTmp.pop();
+            $scope.weapon = $scope.weapons[previousItemIndex];
             if (previousItemIndex == 0)
                 $scope.weapon.first = true;
-    	}
-    	
+        }
+        
     };
 
     $scope.getNextJob = function(id) {
-    	var currentJob = $scope.jobs.filter(function(element) { return element.id === id })[0]
-    	var nextItemIndex = $scope.jobs.indexOf(currentJob) + 1
+        var currentJob = $scope.jobs.filter(function(element) { return element.id === id })[0]
+        var nextItemIndex = $scope.jobs.indexOf(currentJob) + 1
 
-    	if (nextItemIndex <= $scope.jobs.length-1 )
-    	{
-    		$scope.jobTmp.unshift($scope.jobs[nextItemIndex])
-    		$scope.jobTmp.pop();
-    		$scope.job = $scope.jobs[nextItemIndex];
+        if (nextItemIndex <= $scope.jobs.length-1 )
+        {
+            $scope.jobTmp.unshift($scope.jobs[nextItemIndex])
+            $scope.jobTmp.pop();
+            $scope.job = $scope.jobs[nextItemIndex];
              if (nextItemIndex == $scope.jobs.length-1)
                 $scope.job.last = true;
-    	}
-    	
+        }
+        
     };
 
     $scope.getPreviousJob = function(id) {
-    	var currentJob = $scope.jobs.filter(function(element) { return element.id === id })[0]
-    	var previousItemIndex = $scope.jobs.indexOf(currentJob) - 1
+        var currentJob = $scope.jobs.filter(function(element) { return element.id === id })[0]
+        var previousItemIndex = $scope.jobs.indexOf(currentJob) - 1
 
-    	if (previousItemIndex >= 0 )
-    	{
-    		$scope.jobTmp.unshift($scope.jobs[previousItemIndex])
-    		$scope.jobTmp.pop();
-    		$scope.job = $scope.jobs[previousItemIndex];
+        if (previousItemIndex >= 0 )
+        {
+            $scope.jobTmp.unshift($scope.jobs[previousItemIndex])
+            $scope.jobTmp.pop();
+            $scope.job = $scope.jobs[previousItemIndex];
             if (previousItemIndex == 0)
                 $scope.job.first = true;
-    	}
+        }
     };
 
     $scope.getNextRace = function(id) {
-    	var currentRace = $scope.races.filter(function(element) { return element.id === id })[0]
-    	var nextItemIndex = $scope.races.indexOf(currentRace) + 1
+        var currentRace = $scope.races.filter(function(element) { return element.id === id })[0]
+        var nextItemIndex = $scope.races.indexOf(currentRace) + 1
 
-    	if (nextItemIndex <= $scope.races.length-1 )
-    	{
-    		$scope.raceTmp.unshift($scope.races[nextItemIndex])
-    		$scope.raceTmp.pop();
-    		$scope.race = $scope.races[nextItemIndex];
+        if (nextItemIndex <= $scope.races.length-1 )
+        {
+            $scope.raceTmp.unshift($scope.races[nextItemIndex])
+            $scope.raceTmp.pop();
+            $scope.race = $scope.races[nextItemIndex];
             if (nextItemIndex == $scope.races.length-1)
                 $scope.race.last = true;
-    	}
-    	
+        }
+        
     };
 
     $scope.getPreviousRace = function(id) {
-    	var currentRace = $scope.races.filter(function(element) { return element.id === id })[0]
-    	var previousItemIndex = $scope.races.indexOf(currentRace) -1
+        var currentRace = $scope.races.filter(function(element) { return element.id === id })[0]
+        var previousItemIndex = $scope.races.indexOf(currentRace) -1
         
-    	if (previousItemIndex >= 0 )
-    	{
-    		$scope.raceTmp.unshift($scope.races[previousItemIndex])
-    		$scope.raceTmp.pop();
-    		$scope.race = $scope.races[previousItemIndex];
+        if (previousItemIndex >= 0 )
+        {
+            $scope.raceTmp.unshift($scope.races[previousItemIndex])
+            $scope.raceTmp.pop();
+            $scope.race = $scope.races[previousItemIndex];
             if (previousItemIndex == 0)
                 $scope.race.first = true;
-    	}
-    	
+        }
+        
     };
 
 
@@ -260,16 +260,16 @@ angular.module('oopApp')
 
 
     $scope.deleteHero = function(){
-        HeroResource.delete({id: $scope.hero.id}, function(){$scope.getHeroes()})
+        HeroResource.delete({id: $scope.hero.id}, function(){$scope.getHeroes()}, function(error) { MessageFactory.error(error.data);})
     }
     
     
 
   })
-    .controller('WeaponCtrl', function ($scope, $routeParams, $location, WeaponResource) {
-	//$scope.heroes = HeroResource.query();
+    .controller('WeaponCtrl', function ($scope, $routeParams, $location, WeaponResource, MessageFactory) {
+    //$scope.heroes = HeroResource.query();
 
-	        
+            
 
         //$scope.getWeapons();
 
@@ -285,28 +285,29 @@ angular.module('oopApp')
         //     notificationFactory.error(data.ExceptionMessage); 
         // }; 
 
-			var getWeapons = function(){
-        		$scope.weapons = WeaponResource.query();
-        	}
+            var getWeapons = function(){
+                $scope.weapons = WeaponResource.query();
+            }
 
         $scope.addWeapon = function () { 
             WeaponResource.save($scope.weapon, function(){ 
-	            $scope.toggleAddMode(); 
-	            $scope.weapon = {}; 
-	            getWeapons();
+                $scope.toggleAddMode(); 
+                $scope.weapon = {}; 
+                getWeapons();
             });
             
-        	//getWeapons();
+            //getWeapons();
         }; 
 
         $scope.deleteWeapon = function (weapon) { 
-            WeaponResource.delete({id: weapon.id}, function(){getWeapons()})
+            WeaponResource.delete(  {id: weapon.id}, 
+                                    function(){getWeapons(); MessageFactory.success("Weapon Deleted");}, 
+                                    function(error){MessageFactory.error(error.data)});
         }; 
 
         $scope.updateWeapon = function (weapon) { 
-            WeaponResource.update({id: weapon.id}, weapon, function(){getWeapons()})
-        }; 
-
+            WeaponResource.update({id: weapon.id}, weapon, function(){getWeapons()}); 
+        }
         $scope.weapons = WeaponResource.query();
         $scope.addMode = false; 
     });
@@ -314,10 +315,10 @@ angular.module('oopApp')
 
 
 angular.module('oopApp')
-  .controller('RaceCtrl', function ($scope, $routeParams, $location, RaceResource) {
-	//$scope.heroes = HeroResource.query();
+  .controller('RaceCtrl', function ($scope, $routeParams, $location, RaceResource, MessageFactory) {
+    //$scope.heroes = HeroResource.query();
 
-	        
+            
 
         //$scope.getRaces();
 
@@ -333,25 +334,27 @@ angular.module('oopApp')
         //     notificationFactory.error(data.ExceptionMessage); 
         // }; 
 
-			var getRaces = function(){
-        		$scope.races = RaceResource.query();
-        	}
+            var getRaces = function(){
+                $scope.races = RaceResource.query();
+            }
 
 
 
         $scope.addRace = function () { 
             RaceResource.save($scope.race, function(){ 
-	            $scope.toggleAddMode(); 
-	            $scope.race = {}; 
-	            getRaces();
+                $scope.toggleAddMode(); 
+                $scope.race = {}; 
+                getRaces();
             });
             
-        	//getRaces();
+            //getRaces();
         }; 
 
         $scope.deleteRace = function (race) { 
-            RaceResource.delete({id: race.id}, function(){getRaces()})
-        }; 
+            RaceResource.delete({id: race.id}, 
+                                function(){getRaces(); MessageFactory.success("Race Deleted");}, 
+                                function(error){MessageFactory.error(error.data)})
+        };
 
         $scope.updateRace = function (race) { 
             RaceResource.update({id: race.id}, race, function(){getRaces()})
@@ -363,7 +366,7 @@ angular.module('oopApp')
 
 
 angular.module('oopApp')
-  .controller('JobCtrl', function ($scope, $routeParams, $location, JobResource) {
+  .controller('JobCtrl', function ($scope, $routeParams, $location, JobResource, MessageFactory) {
        
 
         $scope.toggleAddMode = function () { 
@@ -378,23 +381,29 @@ angular.module('oopApp')
         //     notificationFactory.error(data.ExceptionMessage); 
         // }; 
 
-			var getJobs = function(){
-        		$scope.jobs = JobResource.query();
-        	}
+            var getJobs = function(){
+                $scope.jobs = JobResource.query();
+            }
 
         $scope.addJob = function () { 
             JobResource.save($scope.job, function(){ 
-	            $scope.toggleAddMode(); 
-	            $scope.job = {}; 
-	            getJobs();
+                $scope.toggleAddMode(); 
+                $scope.job = {}; 
+                getJobs();
             });
             
-        	//getJobs();
+            //getJobs();
         }; 
 
         $scope.deleteJob = function (job) { 
-            JobResource.delete({id: job.id}, function(){getJobs()})
-        }; 
+            JobResource.delete({id: job.id}, 
+                                function(){ 
+                                            getJobs(); 
+                                            MessageFactory.success("Job Deleted");
+                                          }, 
+                                function(error){MessageFactory.error(error.data)}
+                );
+        };
 
         $scope.updateJob = function (job) { 
             JobResource.update({id: job.id}, job, function(){getJobs()})
