@@ -224,14 +224,27 @@ angular.module('oopApp')
 
 
     $scope.getHeroes = function(data){
-        $scope.heroes = HeroResource.query(function(heroesList) {
-                var hero = heroesList.filter(function(element) { return element.id === data.id })[0]
-                $scope.heroesTmp.pop(); 
-                $scope.heroesTmp.unshift(hero);    
-                $scope.hero = hero;
-                $scope.addMode = false;   
-            
-        });
+        if (data != null) {
+            $scope.heroes = HeroResource.query(function(heroesList) {
+                    var hero = heroesList.filter(function(element) { return element.id === data.id })[0]
+                    $scope.heroesTmp.pop(); 
+                    $scope.heroesTmp.unshift(hero);    
+                    $scope.hero = hero;
+                    $scope.addMode = false;   
+                
+            });
+        }
+        else
+        {
+            $scope.heroes = HeroResource.query(function(heroesList) {
+                    var hero = heroesList[0]
+                    $scope.heroesTmp.pop(); 
+                    $scope.heroesTmp.unshift(hero);    
+                    $scope.hero = hero;
+                    $scope.addMode = false;   
+                
+            });
+        }
         
     }
 
@@ -245,6 +258,10 @@ angular.module('oopApp')
         }
     }
 
+
+    $scope.deleteHero = function(){
+        HeroResource.delete({id: $scope.hero.id}, function(){$scope.getHeroes()})
+    }
     
     
 
