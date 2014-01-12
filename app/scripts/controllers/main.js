@@ -86,7 +86,7 @@ angular.module('oopApp')
 
     $scope.getPreviousWeapon = function(id) {
     	var currentWeapon = $scope.weapons.filter(function(element) { return element.id === id })[0]
-    	var previousItemIndex = $scope.weapons.indexOf(currentWeapon) - 1
+    	var previousItemIndex = $scope.weapons.indexOf(currentWeapon)-1
 
     	if (previousItemIndex >= 0 )
     	{
@@ -98,7 +98,7 @@ angular.module('oopApp')
     };
 
     $scope.getNextJob = function(id) {
-    	var currentJob = $scope.weapons.filter(function(element) { return element.id === id })[0]
+    	var currentJob = $scope.jobs.filter(function(element) { return element.id === id })[0]
     	var nextItemIndex = $scope.jobs.indexOf(currentJob) + 1
 
     	if (nextItemIndex <= $scope.jobs.length-1 )
@@ -137,8 +137,8 @@ angular.module('oopApp')
 
     $scope.getPreviousRace = function(id) {
     	var currentRace = $scope.races.filter(function(element) { return element.id === id })[0]
-    	var nextItemIndex = $scope.races.indexOf(currentRace) - 1
-
+    	var previousItemIndex = $scope.races.indexOf(currentRace) -1
+        
     	if (previousItemIndex >= 0 )
     	{
     		$scope.raceTmp.unshift($scope.races[previousItemIndex])

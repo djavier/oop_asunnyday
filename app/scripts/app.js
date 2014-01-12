@@ -8,8 +8,8 @@ var app = angular.module('oopApp', [
   .config(function ($routeProvider, $httpProvider, $locationProvider ) {
     
     //$locationProvider.html5Mode(true)
-    $httpProvider.defaults.headers.post["Content-Type"] = "application/json";
-    $httpProvider.defaults.headers.put["Content-Type"] = "application/json";
+    //$httpProvider.defaults.headers.post["Content-Type"] = "application/json";
+    //$httpProvider.defaults.headers.put["Content-Type"] = "application/json";
 
     $routeProvider
       .when('/', {
