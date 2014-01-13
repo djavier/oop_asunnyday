@@ -40,7 +40,9 @@ angular.module('oopApp')
     $scope.params = $routeParams;
 
     $scope.heroes = HeroResource.query(function(heroes) {
-
+        
+        /*
+        Following code is not working because scope variables and watchers are not updated through
         $scope.weapons = WeaponResource.query(function(data) {     
             initializeSubEntity(data,'hero.weapon_id',$scope.weaponTmp,$scope.job);        
         });         
@@ -51,9 +53,51 @@ angular.module('oopApp')
         $scope.races =  RaceResource.query(function(data) { 
             initializeSubEntity(data,'hero.race_id',$scope.raceTmp,$scope.race);
         }); 
+        */
+       
+        $scope.weapons = WeaponResource.query(function(data) { 
+            $scope.$watch("hero.weapon_id", function(newVal) {
+                var wpn = data.filter(function(element) { return element.id === $scope.hero.weapon_id })[0]
+                $scope.weaponTmp.pop();
+                $scope.weaponTmp.unshift(wpn);
+                $scope.weapon = wpn;
+                if ($scope.weapons.indexOf(wpn) == 0)
+                    $scope.weapon.first = true;
+                if ($scope.weapons.length == 1) 
+                    $scope.weapon.last = true;             
+            });
+        });      
+           
+        $scope.jobs = JobResource.query(function(data) { 
+            $scope.$watch("hero.weapon_id", function(newVal) {
+                var job = data.filter(function(element) { return element.id === $scope.hero.job_id })[0]
+                $scope.jobTmp.pop();
+                $scope.jobTmp.unshift(job);
+                $scope.job = job;
+                if ($scope.jobs.indexOf(job) == 0)
+                    $scope.job.first = true;
+                if ($scope.jobs.length == 1) 
+                    $scope.job.last = true;   
+            });
+        });
+
+        $scope.races =  RaceResource.query(function(data) { 
+            $scope.$watch("hero.weapon_id", function(newVal) {
+                var race = data.filter(function(element) { return element.id === $scope.hero.race_id })[0]
+                $scope.raceTmp.pop();
+                $scope.raceTmp.unshift(race);
+                $scope.race = race;
+                if ($scope.races.indexOf(race) == 0)
+                    $scope.race.first = true;
+                if ($scope.races.length == 1) 
+                    $scope.race.last = true;   
+            });
+        });      
         
         var hero;
 
+
+        //return first hero if no heroid
         if ($scope.params.id == null)
         {
             hero = heroes[0]
@@ -61,6 +105,7 @@ angular.module('oopApp')
         }
         else
         {
+            //find heroId in collection of heroes
             var theHero = heroes.filter(function(element) { return element.id == $scope.params.id })
             if (theHero.length > 0) {
                 hero = theHero[0]
@@ -73,7 +118,6 @@ angular.module('oopApp')
         
         $scope.heroesTmp.unshift(hero);
         $scope.hero = hero
-
 
     });
 

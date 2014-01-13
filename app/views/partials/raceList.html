@@ -1,4 +1,4 @@
-<div style="min-height:75%;" ng-animate="'animate'" ng-repeat="race in raceTmp" ng-click="selectRace(race.id)">
+<div ng-animate="'animate'" ng-repeat="race in raceTmp" ng-click="selectRace(race.id)">
 	<div class="box-item" ng-class="{'box-selected': race.id==hero.race_id}">
 		<div class="small-box">
 			<img style="width:100px;height:100px" ng-src="{{getImage(race)}}"/>
