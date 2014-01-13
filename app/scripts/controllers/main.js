@@ -37,8 +37,9 @@ angular.module('oopApp')
     $scope.jobTmp=[];
     $scope.raceTmp=[];
     $scope.addMode = false;
+    $scope.params = $routeParams;
 
-    $scope.heroes = HeroResource.query(function() {
+    $scope.heroes = HeroResource.query(function(heroes) {
 
         $scope.weapons = WeaponResource.query(function(data) {     
             initializeSubEntity(data,'hero.weapon_id',$scope.weaponTmp,$scope.job);        
@@ -50,12 +51,27 @@ angular.module('oopApp')
         $scope.races =  RaceResource.query(function(data) { 
             initializeSubEntity(data,'hero.race_id',$scope.raceTmp,$scope.race);
         }); 
+        
+        var hero;
+
+        if ($scope.params.id == null)
+        {
+            hero = heroes[0]
+            hero.first=true;         
+        }
+        else
+        {
+            var theHero = heroes.filter(function(element) { return element.id == $scope.params.id })
+            
+            if (theHero != null) {
+                hero = theHero[0]
+            }
+        }
+        
+        $scope.heroesTmp.unshift(hero);
+        $scope.hero = hero
 
 
-        $scope.heroesTmp.unshift($scope.heroes[0]);
-        $scope.hero = $scope.heroes[0]
-        $scope.hero.first=true;     
-                    
     });
 
 

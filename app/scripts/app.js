@@ -20,6 +20,10 @@ var app = angular.module('oopApp', [
         templateUrl: 'views/heroes.html',
         controller: 'HeroCtrl'
       })
+      .when('/Heroes/:id', {
+        templateUrl: 'views/heroes.html',
+        controller: 'HeroCtrl'
+      })
       .when('/Weapons', {
         templateUrl: 'views/weapons.html',
         controller: 'WeaponCtrl'
