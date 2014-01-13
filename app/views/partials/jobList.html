@@ -1,5 +1,5 @@
 <div style="min-height:75%;" ng-animate="'animate'" ng-repeat="job in jobTmp" ng-click="selectJob(job.id)">
-	<div style=" cursor:pointer; border-radius:5px; padding:10px;" ng-class="{'box-selected': job.id==hero.job_id}">
+	<div class="box-item" ng-class="{'box-selected': job.id==hero.job_id}">
 		<div class="small-box">
 			<img style="width:100px;height:100px" ng-src="{{getImage(job)}}"/>
 		</div>
@@ -11,7 +11,7 @@
 </div>
 <center>
 	<div style="margin-top:20px;">
-		<button class="btn btn-info" ng-show="!job.first" ng-click="getPreviousJob(job.id)">Prev.</button>
-		<button class="btn btn-success" ng-show="!job.last" ng-click="getNextJob(job.id)">Next</button>
+		<button class="btn btn-info pull-left" ng-show="!job.first" ng-click="getPreviousJob(job.id)">Prev.</button>
+		<button class="btn btn-success pull-right" ng-show="!job.last" ng-click="getNextJob(job.id)">Next</button>
 	</div>
 </center>

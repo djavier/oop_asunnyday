@@ -1,5 +1,5 @@
 <div style="min-height:75%;" ng-animate="'animate'" ng-repeat="weapon in weaponTmp" ng-click="selectWeapon(weapon.id)">
-	<div style="cursor:pointer; border-radius:5px; padding:10px;" ng-class="{'box-selected': weapon.id==hero.weapon_id}">
+	<div class="box-item" ng-class="{'box-selected': weapon.id==hero.weapon_id}">
 		<div class="small-box">
 			<img style="width:100px;height:100px" ng-src="{{getImage(weapon)}}"/>
 		</div>
@@ -11,8 +11,8 @@
 </div>
 <center>
 	<div style="margin-top:20px;">
-		<button class="btn btn-info" ng-show="!weapon.first" ng-click="getPreviousWeapon(weapon.id)">Prev.</button>
-		<button class="btn btn-success" ng-show="!weapon.last" ng-click="getNextWeapon(weapon.id)">Next</button>
+		<button class="btn btn-info pull-left" ng-show="!weapon.first" ng-click="getPreviousWeapon(weapon.id)">Prev.</button>
+		<button class="btn btn-success pull-right" ng-show="!weapon.last" ng-click="getNextWeapon(weapon.id)">Next</button>
 	</div>
 </center>
 

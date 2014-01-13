@@ -29,8 +29,9 @@
 					</div>
 					<center>
 						<div style="margin-top:20px;">
-							<button class="btn btn-info" ng-show="!hero.first" ng-click="getPreviousHero(hero.id)">Prev.</button>
-							<button class="btn btn-success" ng-show="!hero.last" ng-click="getNextHero(hero.id)">Next</button>
+							<button class="btn btn-info pull-left" ng-show="!hero.first" ng-click="getPreviousHero(hero.id)">Prev.</button>
+							<button class="btn btn-success pull-right" ng-show="!hero.last" ng-click="getNextHero(hero.id)">Next</button>
+							<div class="clearfix"></div>
 						</div>
 					</center>
 				</div>

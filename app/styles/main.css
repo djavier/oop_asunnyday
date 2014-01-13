@@ -40,6 +40,13 @@ body {
   padding:10px !important;
 }
 
+.box-item{
+  cursor:pointer; 
+  border-radius:5px; 
+  height:230px;
+  padding:10px;
+}
+
 .box-selected{
   background-color:#428bca;
   cursor:default !important;
