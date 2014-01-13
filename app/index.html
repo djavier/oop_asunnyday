@@ -40,24 +40,27 @@
         </p>
         <![endif]-->
 
-        <div class="header">
-          <ul class="nav nav-pills pull-right">
-            <li class="active">
-              <a ng-href="#">Home</a>
-            </li>
-            <li>
-              <a ng-href="#/Heroes">Heroes</a>
-            </li>
-            <li>
-              <a ng-href="#/Weapons">Weapons</a>
-            </li>
-            <li>
-              <a ng-href="#/Races">Races</a>
-            </li>
-            <li>
-              <a ng-href="#/Jobs">Jobs</a>
-            </li>
-          </ul>
+        <div class="header" >
+          <div  ng-controller="MainCtrl">
+            <ul class="nav navbar-collapse collapse nav-pills pull-right" role="navigation">
+
+              <li ng-class="{'active': isActive('/')}">
+                <a ng-href="/">Home</a>
+              </li>
+              <li ng-class="{'active': isActive('/Heroes')}">
+                <a ng-href="#/Heroes">Heroes</a>
+              </li>
+              <li ng-class="{'active': isActive('/Weapons')}">
+                <a ng-href="#/Weapons">Weapons</a>
+              </li>
+              <li ng-class="{'active': isActive('/Races')}">
+                <a ng-href="#/Races">Races</a>
+              </li>
+              <li ng-class="{'active': isActive('/Jobs')}">
+                <a ng-href="#/Jobs">Jobs</a>
+              </li>
+            </ul>
+        </div>
           <h3 class="text-muted">OOP: A sunny day</h3>
         </div>
 

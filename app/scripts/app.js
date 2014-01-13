@@ -36,6 +36,9 @@ var app = angular.module('oopApp', [
         templateUrl: 'views/jobs.html',
         controller: 'JobCtrl'
       })
+       .when('/404', {
+        templateUrl: '404.html'
+       })
       .otherwise({
         redirectTo: '/'
       });

@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('oopApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('MainCtrl', function ($scope, $location) {
+    $scope.isActive = function (viewLocation) { 
+        // alert(viewLocation)
+        // alert($location.path())
+        return viewLocation === $location.path();
+    };
   });
 
 angular.module('oopApp')
@@ -27,7 +27,7 @@ angular.module('oopApp')
             restrict: "E",
             templateUrl: "/views/partials/raceList.html"
         };
-    });
+    })
 
 angular.module('oopApp')
   .controller('HeroCtrl', function ($scope, $routeParams, $location, HeroResource, WeaponResource, JobResource, RaceResource, MessageFactory) {
@@ -62,9 +62,12 @@ angular.module('oopApp')
         else
         {
             var theHero = heroes.filter(function(element) { return element.id == $scope.params.id })
-            
-            if (theHero != null) {
+            if (theHero.length > 0) {
                 hero = theHero[0]
+            }
+            else
+            {
+                $location.path("/404");
             }
         }
         
@@ -283,11 +286,6 @@ angular.module('oopApp')
 
   })
     .controller('WeaponCtrl', function ($scope, $routeParams, $location, WeaponResource, MessageFactory) {
-    //$scope.heroes = HeroResource.query();
-
-            
-
-        //$scope.getWeapons();
 
         $scope.toggleAddMode = function () { 
             $scope.addMode = !$scope.addMode; 
@@ -297,13 +295,9 @@ angular.module('oopApp')
             weapon.editMode = !weapon.editMode; 
         }; 
 
-        // var errorCallback = function (data, status, headers, config) { 
-        //     notificationFactory.error(data.ExceptionMessage); 
-        // }; 
-
-            var getWeapons = function(){
-                $scope.weapons = WeaponResource.query();
-            }
+        var getWeapons = function(){
+            $scope.weapons = WeaponResource.query();
+        }
 
         $scope.addWeapon = function () { 
             WeaponResource.save($scope.weapon, function(){ 
@@ -312,7 +306,6 @@ angular.module('oopApp')
                 getWeapons();
             });
             
-            //getWeapons();
         }; 
 
         $scope.deleteWeapon = function (weapon) { 
@@ -324,6 +317,7 @@ angular.module('oopApp')
         $scope.updateWeapon = function (weapon) { 
             WeaponResource.update({id: weapon.id}, weapon, function(){getWeapons()}); 
         }
+
         $scope.weapons = WeaponResource.query();
         $scope.addMode = false; 
     });
@@ -332,11 +326,6 @@ angular.module('oopApp')
 
 angular.module('oopApp')
   .controller('RaceCtrl', function ($scope, $routeParams, $location, RaceResource, MessageFactory) {
-    //$scope.heroes = HeroResource.query();
-
-            
-
-        //$scope.getRaces();
 
         $scope.toggleAddMode = function () { 
             $scope.addMode = !$scope.addMode; 
@@ -346,15 +335,9 @@ angular.module('oopApp')
             race.editMode = !race.editMode; 
         }; 
 
-        // var errorCallback = function (data, status, headers, config) { 
-        //     notificationFactory.error(data.ExceptionMessage); 
-        // }; 
-
-            var getRaces = function(){
-                $scope.races = RaceResource.query();
-            }
-
-
+        var getRaces = function(){
+            $scope.races = RaceResource.query();
+        }
 
         $scope.addRace = function () { 
             RaceResource.save($scope.race, function(){ 
@@ -362,8 +345,7 @@ angular.module('oopApp')
                 $scope.race = {}; 
                 getRaces();
             });
-            
-            //getRaces();
+
         }; 
 
         $scope.deleteRace = function (race) { 
@@ -393,13 +375,9 @@ angular.module('oopApp')
             job.editMode = !job.editMode; 
         }; 
 
-        // var errorCallback = function (data, status, headers, config) { 
-        //     notificationFactory.error(data.ExceptionMessage); 
-        // }; 
-
-            var getJobs = function(){
-                $scope.jobs = JobResource.query();
-            }
+        var getJobs = function(){
+            $scope.jobs = JobResource.query();
+        }
 
         $scope.addJob = function () { 
             JobResource.save($scope.job, function(){ 
@@ -407,8 +385,7 @@ angular.module('oopApp')
                 $scope.job = {}; 
                 getJobs();
             });
-            
-            //getJobs();
+
         }; 
 
         $scope.deleteJob = function (job) { 
