@@ -1,5 +1,7 @@
 'use strict';
 
+var apiHostUrl = "http://0.0.0.0:4567";
+
 var app = angular.module('oopApp', [
   'ngResource',
   'ngRoute',
@@ -79,7 +81,7 @@ app.factory("MessageFactory", function(){
 
 app.factory("HeroResource", function ($resource) {
     return $resource(
-        "http://0.0.0.0:4567/api/v1/heroes/:id",
+        apiHostUrl+"/api/v1/heroes/:id",
         {Id: "@Id" },
         {  
             "update": {method: "PUT"}
@@ -89,7 +91,7 @@ app.factory("HeroResource", function ($resource) {
 
 app.factory("WeaponResource", function ($resource) {
     return $resource(
-        "http://0.0.0.0:4567/api/v1/weapons/:id",
+        apiHostUrl+"/api/v1/weapons/:id",
         {Id: "@Id" },
         {
             "update": {method: "PUT"} 
@@ -99,7 +101,7 @@ app.factory("WeaponResource", function ($resource) {
 
 app.factory("JobResource", function ($resource) {
     return $resource(
-        "http://0.0.0.0:4567/api/v1/jobs/:id",
+        apiHostUrl+"/api/v1/jobs/:id",
         {Id: "@Id" },
         {
             "update": {method: "PUT"} 
@@ -109,7 +111,7 @@ app.factory("JobResource", function ($resource) {
 
 app.factory("RaceResource", function ($resource) {
     return $resource(
-        "http://0.0.0.0:4567/api/v1/races/:id",
+        apiHostUrl+"/api/v1/races/:id",
         {Id: "@Id" },
         {
             "update": {method: "PUT"} 

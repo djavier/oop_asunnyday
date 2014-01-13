@@ -1,4 +1,4 @@
-<div ng-animate="'animate'" ng-repeat="weapon in weaponTmp" ng-click="selectWeapon(weapon.id)">
+<div class="animation" ng-repeat="weapon in weaponTmp" ng-click="selectWeapon(weapon.id)">
 	<div class="box-item" ng-class="{'box-selected': weapon.id==hero.weapon_id}">
 		<div class="small-box">
 			<img style="width:100px;height:100px" ng-src="{{getImage(weapon)}}"/>

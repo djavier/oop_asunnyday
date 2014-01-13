@@ -1,4 +1,4 @@
-<div ng-animate="'animate'" ng-repeat="job in jobTmp" ng-click="selectJob(job.id)">
+<div class="animation" ng-repeat="job in jobTmp" ng-click="selectJob(job.id)">
 	<div class="box-item" ng-class="{'box-selected': job.id==hero.job_id}">
 		<div class="small-box">
 			<img style="width:100px;height:100px" ng-src="{{getImage(job)}}"/>
