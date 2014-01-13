@@ -57,40 +57,46 @@ angular.module('oopApp')
        
         $scope.weapons = WeaponResource.query(function(data) { 
             $scope.$watch("hero.weapon_id", function(newVal) {
-                var wpn = data.filter(function(element) { return element.id === $scope.hero.weapon_id })[0]
-                $scope.weaponTmp.pop();
-                $scope.weaponTmp.unshift(wpn);
-                $scope.weapon = wpn;
-                if ($scope.weapons.indexOf(wpn) == 0)
-                    $scope.weapon.first = true;
-                if ($scope.weapons.length == 1) 
-                    $scope.weapon.last = true;             
+                if (newVal != null){    
+                    var wpn = data.filter(function(element) { return element.id === newVal })[0]
+                    $scope.weaponTmp.pop();
+                    $scope.weaponTmp.unshift(wpn);
+                    $scope.weapon = wpn;
+                    if ($scope.weapons.indexOf(wpn) == 0)
+                        $scope.weapon.first = true;
+                    if ($scope.weapons.length == 1) 
+                        $scope.weapon.last = true;             
+                }
             });
         });      
            
         $scope.jobs = JobResource.query(function(data) { 
-            $scope.$watch("hero.weapon_id", function(newVal) {
-                var job = data.filter(function(element) { return element.id === $scope.hero.job_id })[0]
-                $scope.jobTmp.pop();
-                $scope.jobTmp.unshift(job);
-                $scope.job = job;
-                if ($scope.jobs.indexOf(job) == 0)
-                    $scope.job.first = true;
-                if ($scope.jobs.length == 1) 
-                    $scope.job.last = true;   
+            $scope.$watch("hero.job_id", function(newVal) {
+                if (newVal != null){
+                    var job = data.filter(function(element) { return element.id === newVal })[0]
+                    $scope.jobTmp.pop();
+                    $scope.jobTmp.unshift(job);
+                    $scope.job = job;
+                    if ($scope.jobs.indexOf(job) == 0)
+                        $scope.job.first = true;
+                    if ($scope.jobs.length == 1) 
+                        $scope.job.last = true;   
+                }
             });
         });
 
         $scope.races =  RaceResource.query(function(data) { 
-            $scope.$watch("hero.weapon_id", function(newVal) {
-                var race = data.filter(function(element) { return element.id === $scope.hero.race_id })[0]
-                $scope.raceTmp.pop();
-                $scope.raceTmp.unshift(race);
-                $scope.race = race;
-                if ($scope.races.indexOf(race) == 0)
-                    $scope.race.first = true;
-                if ($scope.races.length == 1) 
-                    $scope.race.last = true;   
+            $scope.$watch("hero.race_id", function(newVal) {
+                if (newVal != null){
+                    var race = data.filter(function(element) { return element.id === newVal })[0]
+                    $scope.raceTmp.pop();
+                    $scope.raceTmp.unshift(race);
+                    $scope.race = race;
+                    if ($scope.races.indexOf(race) == 0)
+                        $scope.race.first = true;
+                    if ($scope.races.length == 1) 
+                        $scope.race.last = true;   
+                }
             });
         });      
         
