@@ -42,26 +42,38 @@
 
         <div class="header" >
           <div  ng-controller="MainCtrl">
-            <ul class="nav navbar-collapse collapse nav-pills pull-right" role="navigation">
+            <nav class="navbar navbar-default" role="navigation">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">OOP: A sunny day</a>
+              </div>
+              <div class="collapse navbar-collapse" id="navbar-menu">
+                <ul class="nav nav-pills pull-right" role="navigation">
 
-              <li ng-class="{'active': isActive('/')}">
-                <a ng-href="/">Home</a>
-              </li>
-              <li ng-class="{'active': isActive('/Heroes')}">
-                <a ng-href="#/Heroes">Heroes</a>
-              </li>
-              <li ng-class="{'active': isActive('/Weapons')}">
-                <a ng-href="#/Weapons">Weapons</a>
-              </li>
-              <li ng-class="{'active': isActive('/Races')}">
-                <a ng-href="#/Races">Races</a>
-              </li>
-              <li ng-class="{'active': isActive('/Jobs')}">
-                <a ng-href="#/Jobs">Jobs</a>
-              </li>
-            </ul>
-        </div>
-          <h3 class="text-muted">OOP: A sunny day</h3>
+                  <li ng-class="{'active': isActive('/')}">
+                    <a ng-href="/">Home</a>
+                  </li>
+                  <li ng-class="{'active': isActive('/Heroes')}">
+                    <a ng-href="#/Heroes">Heroes</a>
+                  </li>
+                  <li ng-class="{'active': isActive('/Weapons')}">
+                    <a ng-href="#/Weapons">Weapons</a>
+                  </li>
+                  <li ng-class="{'active': isActive('/Races')}">
+                    <a ng-href="#/Races">Races</a>
+                  </li>
+                  <li ng-class="{'active': isActive('/Jobs')}">
+                    <a ng-href="#/Jobs">Jobs</a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </div>
         </div>
 
         <!-- Add your site or application content here -->
