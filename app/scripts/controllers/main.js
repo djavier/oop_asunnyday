@@ -320,10 +320,10 @@ angular.module('oopApp')
     $scope.saveHero = function(){
         if ($scope.hero.id == null)
         {
-            HeroResource.save($scope.hero, function(data) {$scope.getHeroes(data)})   
+            HeroResource.save($scope.hero, function(data) {$scope.getHeroes(data); MessageFactory.success("Welcome to our new warrior fellow!")});
         } else
         {
-            HeroResource.update({id: $scope.hero.id}, $scope.hero, function(){HeroResource.query()})
+            HeroResource.update({id: $scope.hero.id}, $scope.hero, function(){HeroResource.query(); MessageFactory.success("Congratulation son, your new stats are worthy to show!")});
         }
     }
 
